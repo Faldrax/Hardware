@@ -1,13 +1,13 @@
-# 🖥️ Projet Hardware PC - Plateforme E-commerce Gaming
+#  Projet Hardware PC - Plateforme E-commerce Gaming
 
-## 📝 Présentation du Projet
+##  Présentation du Projet
 Ce projet consiste à créer un site web vitrine et e-commerce spécialisé dans la vente de PC Gaming haut gamme. L'objectif était de concevoir une interface moderne, intuitive et "ultra haut de gamme", s'inspirant des codes visuels de plateformes majeures comme YouTube (charte graphique Rouge, Blanc).
 
 **Sujet :** CIW-projet-01, Site personnel simple
 
 ---
 
-## 🚀 Fonctionnalités Principales
+##  Fonctionnalités Principales
 
 ### 1. Page d'Accueil (Index)
 - **Grille de Produits Dynamique** : Présentation des configurations sous forme de cartes (Cards).
@@ -29,7 +29,7 @@ Ce projet consiste à créer un site web vitrine et e-commerce spécialisé dans
 
 ---
 
-## 👥 Rôle des Membres du Binôme
+##  Rôle des Membres du Binôme
 Ce projet a été réalisé en collaboration avec une répartition claire des tâches pour garantir l'efficacité :
 
 - **GRISON Clément** :
@@ -46,7 +46,7 @@ Ce projet a été réalisé en collaboration avec une répartition claire des t�
 
 ---
 
-## 🛠️ Installation et Utilisation
+## Installation et Utilisation
 
 ### Prérequis
 Aucun serveur n'est requis. Le projet utilise exclusivement les technologies **HTML5**, **CSS3** et **JavaScript**.
@@ -59,7 +59,7 @@ Aucun serveur n'est requis. Le projet utilise exclusivement les technologies **H
 
 ---
 
-## 📂 Structure du Répertoire
+## Structure du Répertoire
 
 ├── index.html           # Page d'accueil (Grille de produits et lien vers Contact et A propos)
 ├── Contact.html         # Formulaire de contact avec JS
@@ -73,4 +73,5 @@ Aucun serveur n'est requis. Le projet utilise exclusivement les technologies **H
     ├── page_pc_3.html   # Fiche détaillée : ORCUS
     ├── pc_1.png         # Visuel PC 1
     ├── pc_2.png         # Visuel PC 2
+
     └── pc_3.png         # Visuel PC 3
