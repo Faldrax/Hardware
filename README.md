@@ -39,7 +39,7 @@ Ce projet a été réalisé en collaboration avec une répartition claire des t�
     - Correction des programmes html et CSS avec W3C et JS avec JSHint.
     - Annotation des programmes.
 
-- **Poultier Damien** :
+- **POULTIER Damien** :
     - Développement JavaScript (Validation formulaire, compteur de clics).
     - Rédaction du contenu technique et optimisation des images.
     - Débogage des liens relatifs.
@@ -75,3 +75,4 @@ Aucun serveur n'est requis. Le projet utilise exclusivement les technologies **H
     ├── pc_2.png         # Visuel PC 2
 
     └── pc_3.png         # Visuel PC 3
+
