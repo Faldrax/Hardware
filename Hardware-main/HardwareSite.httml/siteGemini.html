@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hardware Flow - Shop</title>
+    <style>
+        :root {
+            --yt-red: #FF0000; /* Le rouge officiel YouTube */
+            --yt-black: #0F0F0F;
+            --price-green: #2BA640; /* Vert pour le stock/confiance */
+        }
+
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            background-color: #F9F9F9; /* Un poil plus gris pour faire ressortir les cartes blanches */
+            color: var(--yt-black);
+        }
+
+        /* --- HEADER SIMPLIFIÉ (Style YouTube) --- */
+        header {
+            background: white;
+            height: 60px;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            letter-spacing: -0.5px;
+        }
+        .logo span { color: var(--yt-red); font-size: 26px; }
+
+        .search-bar {
+            flex: 1;
+            max-width: 600px;
+            display: flex;
+            margin: 0 20px;
+        }
+        .search-input {
+            width: 100%;
+            padding: 10px 16px;
+            border: 1px solid #ccc;
+            border-radius: 40px 0 0 40px;
+            outline: none;
+        }
+        .search-btn {
+            padding: 0 24px;
+            background: #f8f8f8;
+            border: 1px solid #ccc;
+            border-left: none;
+            border-radius: 0 40px 40px 0;
+            cursor: pointer;
+        }
+
+        /* --- GRILLE PRODUITS --- */
+        .container {
+            padding: 24px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 20px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 20px;
+        }
+
+        /* --- LA CARTE VENDEUSE (HYBRIDE YOUTUBE/SHOP) --- */
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: box-shadow 0.3s, transform 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+
+        /* Zone Image (Thumbnail) */
+        .thumbnail-area {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16/9;
+            overflow: hidden;
+        }
+        
+        .thumbnail-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Badge Prix sur l'image (Comme la durée vidéo, mais c'est le prix) */
+        .price-badge {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            background-color: var(--yt-black);
+            color: white;
+            padding: 4px 8px;
+            font-weight: bold;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        /* Zone Infos */
+        .info-area {
+            padding: 12px;
+            display: flex;
+            gap: 12px;
+        }
+
+        .avatar-brand {
+            width: 40px;
+            height: 40px;
+            background: #EEE;
+            border-radius: 50%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        .text-content {
+            flex: 1;
+        }
+
+        .title {
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 1.4;
+            margin-bottom: 6px;
+            color: #0F0F0F;
+        }
+
+        .specs {
+            font-size: 13px;
+            color: #606060;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        /* Le gros bouton d'action (Style bouton S'abonner) */
+        .buy-action {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 8px;
+        }
+
+        .price-big {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--yt-black);
+        }
+
+        .btn-buy {
+            background-color: var(--yt-black); /* Ou Rouge selon ta préf */
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px; /* Arrondi comme YouTube */
+            font-weight: 500;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .btn-buy:hover {
+            background-color: var(--yt-red); /* Devient rouge au survol -> Incitation */
+        }
+        
+        .promo-tag {
+            background: #FF0000;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo"><span>▶</span> Hardware Flow</div>
+        <div class="search-bar">
+            <input type="text" class="search-input" placeholder="Quelle puissance cherchez-vous ?">
+            <button class="search-btn">🔍</button>
+        </div>
+        <div>🛒 Panier (0)</div>
+    </header>
+
+    <div class="container">
+        <div class="section-title">Recommandés pour vous</div>
+        
+        <div class="product-grid">
+
+            <div class="product-card">
+                <div class="thumbnail-area">
+                    <a href="file:///C:/Users/cleme/Documents/HardwareSite.httml/Page pc/page pc 1.html"> <img src="file:///C:/Users/cleme/Documents/HardwareSite.httml/Page pc/pc 1.png"> 
+                    <div class="price-badge">799 €</div>
+                </div>
+                <div class="info-area">
+                    <div class="avatar-brand">HF</div> <div class="text-content">
+                        <div class="title">Le PS5 Pro Killer (Pack Fortnite/LoL)</div>
+                        <span class="specs">Intel i5 • RTX 3060 • 16Go RAM</span>
+                        
+                        <div class="buy-action">
+                            <span class="price-big">799 €</span>
+                            <button class="btn-buy">COMMANDER</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="thumbnail-area">
+                    <img src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?auto=format&fit=crop&w=600&q=80" class="thumbnail-img">
+                    <span class="promo-tag" style="position:absolute; top:8px; left:8px;">Bestseller</span>
+                    <div class="price-badge">1 299 €</div>
+                </div>
+                <div class="info-area">
+                    <div class="avatar-brand">HF</div>
+                    <div class="text-content">
+                        <div class="title">La config 1440p ULTIME <span class="promo-tag">-10%</span></div>
+                        <span class="specs">Ryzen 7 • RTX 4070 • 32Go RAM</span>
+                        
+                        <div class="buy-action">
+                            <span class="price-big">1 299 €</span>
+                            <button class="btn-buy">COMMANDER</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="thumbnail-area">
+                    <img src="https://images.unsplash.com/photo-1624705002806-5d72df19c3ad?auto=format&fit=crop&w=600&q=80" class="thumbnail-img">
+                    <div class="price-badge">2 499 €</div>
+                </div>
+                <div class="info-area">
+                    <div class="avatar-brand">HF</div>
+                    <div class="text-content">
+                        <div class="title">Le MONSTRE pour Streamer (4K Ultra)</div>
+                        <span class="specs">i9 14900K • RTX 4080 Super • 64Go</span>
+                        
+                        <div class="buy-action">
+                            <span class="price-big">2 499 €</span>
+                            <button class="btn-buy">COMMANDER</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

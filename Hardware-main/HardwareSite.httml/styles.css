@@ -1,0 +1,26 @@
+/*   modifie l'image 2 (nth-of-type(1))  */
+article:first-of-type img:first-of-type {
+
+    position:relative;
+    width: 300px;
+    height: 300px;
+
+
+}
+
+article:nth-of-type(2) img:nth-of-type(2){
+
+    position:relative;
+    width: 300px;
+    height: 300px;
+
+
+}
+
+
+.container{
+
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
